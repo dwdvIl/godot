@@ -352,7 +352,7 @@ void ResourceImporterTexture::save_to_ctex_format(Ref<FileAccess> f, const Ref<I
 }
 
 void ResourceImporterTexture::_save_ctex(const Ref<Image> &p_image, const String &p_to_path, CompressMode p_compress_mode, float p_lossy_quality, const Image::BasisUniversalPackerParams &p_basisu_params, Image::CompressMode p_vram_compression, bool p_mipmaps, bool p_streamable, bool p_detect_3d, bool p_detect_roughness, bool p_detect_normal, bool p_force_normal, bool p_srgb_friendly, bool p_force_po2_for_compressed, uint32_t p_limit_mipmap, const Ref<Image> &p_normal, Image::RoughnessChannel p_roughness_channel) {
-	Ref<FileAccess> f = FileAccess::open(p_to_path, FileAccess::WRITE);
+	Ref<FileAccess> f = FileAccess::open_compressed(p_to_path, FileAccess::WRITE, FileAccess::COMPRESSION_DEFLATE);
 	ERR_FAIL_COND(f.is_null());
 
 	// Godot Streamable Texture 2D.

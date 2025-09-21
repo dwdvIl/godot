@@ -266,7 +266,7 @@ void ResourceImporterLayeredTexture::_save_tex(Vector<Ref<Image>> p_images, cons
 		}
 	}
 
-	Ref<FileAccess> f = FileAccess::open(p_to_path, FileAccess::WRITE);
+	Ref<FileAccess> f = FileAccess::open_compressed(p_to_path, FileAccess::WRITE, FileAccess::COMPRESSION_DEFLATE);
 	f->store_8('G');
 	f->store_8('S');
 	f->store_8('T');

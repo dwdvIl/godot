@@ -79,7 +79,7 @@ Error ResourceImporterImage::import(ResourceUID::ID p_source_id, const String &p
 
 	f->get_buffer(data.ptrw(), len);
 
-	f = FileAccess::open(p_save_path + ".image", FileAccess::WRITE);
+	f = FileAccess::open_compressed(p_save_path + ".image", FileAccess::WRITE, FileAccess::COMPRESSION_DEFLATE);
 	ERR_FAIL_COND_V_MSG(f.is_null(), ERR_CANT_CREATE, "Cannot create file in path '" + p_save_path + ".image'.");
 
 	//save the header GDIM

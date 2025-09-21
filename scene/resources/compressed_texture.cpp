@@ -37,7 +37,7 @@ Error CompressedTexture2D::_load_data(const String &p_path, int &r_width, int &r
 
 	ERR_FAIL_COND_V(image.is_null(), ERR_INVALID_PARAMETER);
 
-	Ref<FileAccess> f = FileAccess::open(p_path, FileAccess::READ);
+	Ref<FileAccess> f = FileAccess::open_compressed(p_path, FileAccess::READ, FileAccess::COMPRESSION_DEFLATE);
 	ERR_FAIL_COND_V_MSG(f.is_null(), ERR_CANT_OPEN, vformat("Unable to open file: %s.", p_path));
 
 	uint8_t header[4];
@@ -504,7 +504,7 @@ Image::Format CompressedTexture3D::get_format() const {
 }
 
 Error CompressedTexture3D::_load_data(const String &p_path, Vector<Ref<Image>> &r_data, Image::Format &r_format, int &r_width, int &r_height, int &r_depth, bool &r_mipmaps) {
-	Ref<FileAccess> f = FileAccess::open(p_path, FileAccess::READ);
+	Ref<FileAccess> f = FileAccess::open_compressed(p_path, FileAccess::READ, FileAccess::COMPRESSION_DEFLATE);
 	ERR_FAIL_COND_V_MSG(f.is_null(), ERR_CANT_OPEN, vformat("Unable to open file: %s.", p_path));
 
 	uint8_t header[4];
@@ -690,7 +690,7 @@ Image::Format CompressedTextureLayered::get_format() const {
 Error CompressedTextureLayered::_load_data(const String &p_path, Vector<Ref<Image>> &images, int &mipmap_limit, int p_size_limit) {
 	ERR_FAIL_COND_V(images.size() != 0, ERR_INVALID_PARAMETER);
 
-	Ref<FileAccess> f = FileAccess::open(p_path, FileAccess::READ);
+	Ref<FileAccess> f = FileAccess::open_compressed(p_path, FileAccess::READ, FileAccess::COMPRESSION_DEFLATE);
 	ERR_FAIL_COND_V_MSG(f.is_null(), ERR_CANT_OPEN, vformat("Unable to open file: %s.", p_path));
 
 	uint8_t header[4];
